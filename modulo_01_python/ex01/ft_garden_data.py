@@ -4,8 +4,8 @@ class Plant:
         self.height = height
         self.age = age
 
-    def describe(self) -> None:
-        print(f"{self.name}: {self.height}cm, {self.age} days old")
+    def get_description(self) -> str:
+        return f"{self.name}: {self.height}cm, {self.age} days old"
 
 
 if __name__ == "__main__":
@@ -13,6 +13,6 @@ if __name__ == "__main__":
     sunflower = Plant("Sunflower", 80, 45)
     cactus = Plant("Cactus", 15, 120)
     print("=== Garden Plant Registry ===")
-    rose.describe()
-    sunflower.describe()
-    cactus.describe()
+    print(rose.get_description())
+    print(sunflower.get_description())
+    print(cactus.get_description())
