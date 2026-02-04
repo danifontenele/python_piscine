@@ -13,6 +13,15 @@ class GardenManager:
             cls.gardens_list.append(garden)
             cls.total += 1
 
+    @classmethod
+    def compare_gardens(cls, garden1, garden2):
+        cls.garden1 = garden1
+        cls.garden2 = garden2
+        garden1_score = GardenStats.garden_score(cls.garden1.plant_list)
+        garden2_score = GardenStats.garden_score(cls.garden2.plant_list)
+        print(f"Garden scores - {cls.garden1.name}: {garden1_score}, "
+              f"{cls.garden2.name}: {garden2_score}")
+
 
 class Garden:
     def __init__(self, name: str):
@@ -131,12 +140,11 @@ class GardenStats:
 
 if __name__ == "__main__":
     print("=== Garden Management System Demo ===")
-    manager = GardenManager
-    manager.create_garden_network()
+    GardenManager.create_garden_network()
 
-    garden1 = manager.gardens_list[0]
-    garden2 = manager.gardens_list[1]
-    garden3 = manager.gardens_list[2]
+    garden1 = GardenManager.gardens_list[0]
+    garden2 = GardenManager.gardens_list[1]
+    garden3 = GardenManager.gardens_list[2]
     print("")
     rose = FloweringPlant("Rose", 25, 30, "red")
     oak = Plant("Oak Tree", 200, 365)
@@ -152,5 +160,4 @@ if __name__ == "__main__":
     garden2.get_stats()
     print("")
     print(f"Total gardens managed: {GardenManager.total}")
-    garden2_score = GardenStats.garden_score(garden2.plant_list) #O garden manager deve fazer essa comparação
-    print(f"Garden scores - {garden2.name}: {garden2_score}")
+    GardenManager.compare_gardens(garden1, garden2)
