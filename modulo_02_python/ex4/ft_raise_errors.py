@@ -9,6 +9,7 @@ class WaterError(Exception):
 class SunlightError(Exception):
     pass
 
+
 def check_plant_health(plant_name, water_level, sunlight_hours):
     if plant_name is None:
         raise PlantNameError("Plant name cannot be empty!")
@@ -21,10 +22,10 @@ def check_plant_health(plant_name, water_level, sunlight_hours):
 
     if sunlight_hours > 12:
         raise SunlightError(f"Sunlight hours {sunlight_hours} "
-                                f"is too high (max 12)")
+                            f"is too high (max 12)")
     elif sunlight_hours < 2:
         raise SunlightError(f"Sunlight hours {sunlight_hours} "
-                                f"is too low (min 2)")
+                            f"is too low (min 2)")
     print(f"Plant '{plant_name}' is healthy!\n")
 
 

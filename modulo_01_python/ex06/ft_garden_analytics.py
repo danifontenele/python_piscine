@@ -29,7 +29,7 @@ class Garden:
         self.plant_list = []
         self.total_growth = 0
 
-    def add_plant(self, plant):
+    def add_plant(self, plant: str):
         self.plant_list.append(plant)
         print(f"Added {plant.name} to {self.name}'s garden")
 
