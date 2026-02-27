@@ -1,5 +1,6 @@
 import sys
 
+
 def dictionary_factory() -> dict:
     ac = len(sys.argv)
     arg = sys.argv
@@ -11,17 +12,20 @@ def dictionary_factory() -> dict:
         i += 1
     return inventory
 
+
 def inventory_system_analysis(inventory: dict, total: int) -> None:
     print("=== Inventory System Analysis ===")
     print(f"Total items in inventory: {total}")
     print(f"Unique item types: {len(inventory)}")
 
+
 def show_current_inventory(inventory: dict, total: int) -> None:
-    print ("=== Current Inventory ===")
+    print("=== Current Inventory ===")
 
     for name, quantity in inventory.items():
         percentage = quantity / total * 100
         print(f"{name}: {quantity} units ({percentage:.1f}%)")
+
 
 def show_inventory_statistics(inventory: dict) -> None:
     biggest_item = None
@@ -41,6 +45,22 @@ def show_inventory_statistics(inventory: dict) -> None:
     print(f"Most abundant: {biggest_item} ({biggest_value})")
     print(f"Least abundant: {smallest_item} ({smallest_value})")
 
+
+def show_item_categories():
+    print("=== Item Categories ===")
+
+def show_management_suggestions(inventory: dict) -> None:
+    print("=== Management Suggestions ===")
+
+
+def show_dictionary_properties(inventory: dict) -> None:
+    print("=== Dictionary Properties Demo ===")
+    items = ", ".join(inventory)
+    values = ", ".join(str(v) for v in inventory.values())
+    print(f"Dictionary keys: {items}")
+    print(f"Dictionary values: {values}")
+
+
 def main() -> None:
     inventory = dictionary_factory()
     total = sum(inventory.values())
@@ -51,6 +71,12 @@ def main() -> None:
     show_current_inventory(inventory, total)
     print("")
     show_inventory_statistics(inventory)
+    print("")
+    show_item_categories()
+    print("")
+    show_management_suggestions(inventory)
+    print("")
+    show_dictionary_properties(inventory)
 
 
 if __name__ == "__main__":
