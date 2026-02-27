@@ -11,28 +11,46 @@ def dictionary_factory() -> dict:
         i += 1
     return inventory
 
-def show_current_inventory(inventory: dict) -> None:
-    sword = inventory.get("sword")
-    potion = inventory.get("potion")
-    shield = inventory.get("shield")
-    armor = inventory.get("armor")
-    helmet = inventory.get("helmet")
-    total = sword + potion + shield + armor + helmet
+def inventory_system_analysis(inventory: dict, total: int) -> None:
+    print("=== Inventory System Analysis ===")
+    print(f"Total items in inventory: {total}")
+    print(f"Unique item types: {len(inventory)}")
+
+def show_current_inventory(inventory: dict, total: int) -> None:
     print ("=== Current Inventory ===")
-    print(f"sword: {sword} units ({sword / total * 100:.1f}%)")
-    print(f"potion: {potion} units ({potion / total * 100:.1f}%)")
-    print(f"shield: {shield} units ({shield / total * 100:.1f}%)")
-    print(f"armor: {armor} units ({armor / total * 100:.1f}%)")
-    print(f"helmet: {helmet} units ({helmet / total * 100:.1f}%)")
+
+    for name, quantity in inventory.items():
+        percentage = quantity / total * 100
+        print(f"{name}: {quantity} units ({percentage:.1f}%)")
 
 def show_inventory_statistics(inventory: dict) -> None:
-    pass
-	
+    biggest_item = None
+    biggest_value = -1
+    smallest_item = None
+    smallest_value = float("inf")
+
+    for name, quantity in inventory.items():
+        if quantity > biggest_value:
+            biggest_item = name
+            biggest_value = quantity
+        if quantity < smallest_value:
+            smallest_item = name
+            smallest_value = quantity
+
+    print("=== Inventory Statistics ===")
+    print(f"Most abundant: {biggest_item} ({biggest_value})")
+    print(f"Least abundant: {smallest_item} ({smallest_value})")
 
 def main() -> None:
     inventory = dictionary_factory()
-    show_current_inventory(inventory)
-    inventory_statistics(inventory)
+    total = sum(inventory.values())
+    if total == 0:
+        return
+    inventory_system_analysis(inventory, total)
+    print("")
+    show_current_inventory(inventory, total)
+    print("")
+    show_inventory_statistics(inventory)
 
 
 if __name__ == "__main__":
